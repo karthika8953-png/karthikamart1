@@ -1,0 +1,1238 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KarthikaMart</title>
+
+<style>
+:root {
+    --primary: #ff4b20;
+    --dark: #18343b;
+    --bg: #fffaf6;
+    --border: #eee6df;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: var(--bg);
+    color: var(--dark);
+}
+
+button, input, textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+header {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.nav {
+    max-width: 1150px;
+    margin: auto;
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.search {
+    flex: 1;
+    min-width: 180px;
+}
+
+.search input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.btn {
+    padding: 11px 15px;
+    border-radius: 9px;
+    font-weight: bold;
+}
+
+.primary {
+    background: var(--primary);
+    color: white;
+}
+
+.secondary {
+    background: #fff0e9;
+    color: var(--primary);
+}
+
+.outline {
+    background: white;
+    border: 1px solid var(--border);
+    color: var(--dark);
+}
+
+.container {
+    max-width: 1150px;
+    padding: 24px 16px;
+    margin: auto;
+}
+
+.hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    background: #ffede3;
+    border-radius: 22px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.hero-text {
+    padding: 35px;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 4vw, 48px);
+    margin: 12px 0;
+}
+
+.hero p {
+    line-height: 1.7;
+    color: #53676b;
+}
+
+.hero-image {
+    background: #ffddcb;
+    min-height: 260px;
+    display: grid;
+    place-items: center;
+    font-size: 100px;
+}
+
+h2 {
+    margin-top: 25px;
+}
+
+.categories {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 15px 0 25px;
+}
+
+.chip {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 10px 16px;
+    border-radius: 25px;
+}
+
+.chip.active {
+    background: var(--dark);
+    color: white;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.product {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.product-image {
+    height: 155px;
+    display: grid;
+    place-items: center;
+    font-size: 65px;
+}
+
+.product-info {
+    padding: 14px;
+}
+
+.product-info h3 {
+    font-size: 15px;
+}
+
+.muted {
+    color: #718083;
+    font-size: 13px;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 12px 0;
+}
+
+.product-info button {
+    width: 100%;
+}
+
+.panel {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 20px;
+    align-items: start;
+}
+
+.cart-row {
+    display: grid;
+    grid-template-columns: 65px 1fr auto;
+    gap: 12px;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.cart-image {
+    height: 65px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    font-size: 32px;
+}
+
+.quantity {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.quantity button {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    background: #f1efec;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.total {
+    border-top: 1px solid var(--border);
+    padding-top: 15px;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.full {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.field {
+    margin-bottom: 15px;
+}
+
+.field label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+}
+
+.field textarea {
+    min-height: 85px;
+    resize: vertical;
+}
+
+.auth {
+    max-width: 430px;
+    margin: 30px auto;
+    background: white;
+    padding: 25px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+}
+
+.message {
+    padding: 12px;
+    border-radius: 8px;
+    background: #e7f8ed;
+    color: #17663e;
+    margin: 12px 0;
+}
+
+.empty {
+    text-align: center;
+    background: white;
+    padding: 40px 20px;
+    border: 1px dashed var(--border);
+    border-radius: 15px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #718083;
+    border-top: 1px solid var(--border);
+    margin-top: 35px;
+}
+
+@media (max-width: 800px) {
+    .products {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-image {
+        min-height: 150px;
+        font-size: 75px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav {
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .hero-text {
+        padding: 23px;
+    }
+
+    .products {
+        gap: 10px;
+    }
+
+    .product-image {
+        height: 120px;
+        font-size: 50px;
+    }
+
+    .cart-row {
+        grid-template-columns: 50px 1fr auto;
+        gap: 8px;
+    }
+
+    .cart-image {
+        height: 50px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <nav class="nav">
+        <div class="logo" onclick="showPage('home')">
+            Karthika<span>Mart</span>
+        </div>
+
+        <div class="search">
+            <input id="searchInput"
+                   placeholder="Search products..."
+                   oninput="renderProducts()">
+        </div>
+
+        <button class="btn outline" onclick="showPage('orders')">
+            My Orders
+        </button>
+
+        <button class="btn outline" onclick="showPage('cart')">
+            Cart (<span id="cartCount">0</span>)
+        </button>
+
+        <button class="btn primary" id="accountButton"
+                onclick="showPage(currentUser ? 'account' : 'login')">
+            Login
+        </button>
+    </nav>
+</header>
+
+<main id="app" class="container"></main>
+
+<footer>
+    © 2026 KarthikaMart · Everyday shopping made simple
+</footer>
+
+<script>
+const products = [
+    {
+        id: 1,
+        name: "Cotton Shirt",
+        category: "Men",
+        price: 699,
+        emoji: "👔",
+        color: "#e4f0ed",
+        description: "Comfortable everyday cotton shirt"
+    },
+    {
+        id: 2,
+        name: "Everyday Kurti",
+        category: "Women",
+        price: 849,
+        emoji: "👗",
+        color: "#f9e2e8",
+        description: "Stylish and comfortable kurti"
+    },
+    {
+        id: 3,
+        name: "Casual Sneakers",
+        category: "Footwear",
+        price: 1199,
+        emoji: "👟",
+        color: "#e7e7fa",
+        description: "Lightweight everyday sneakers"
+    },
+    {
+        id: 4,
+        name: "Tote Bag",
+        category: "Accessories",
+        price: 399,
+        emoji: "👜",
+        color: "#f8e8ce",
+        description: "Useful bag for everyday needs"
+    },
+    {
+        id: 5,
+        name: "Denim Jacket",
+        category: "Men",
+        price: 1499,
+        emoji: "🧥",
+        color: "#dce9f7",
+        description: "Classic denim jacket"
+    },
+    {
+        id: 6,
+        name: "Summer Dress",
+        category: "Women",
+        price: 999,
+        emoji: "👚",
+        color: "#fce8d7",
+        description: "Light and breezy summer wear"
+    },
+    {
+        id: 7,
+        name: "Daily Sandals",
+        category: "Footwear",
+        price: 549,
+        emoji: "🩴",
+        color: "#f2e4d8",
+        description: "Comfortable daily sandals"
+    },
+    {
+        id: 8,
+        name: "Sunglasses",
+        category: "Accessories",
+        price: 499,
+        emoji: "🕶️",
+        color: "#e3ecec",
+        description: "Simple and stylish sunglasses"
+    }
+];
+
+let activeCategory = "All";
+
+let currentUser =
+    JSON.parse(localStorage.getItem("km_user") || "null");
+
+let cart =
+    JSON.parse(localStorage.getItem("km_cart") || "[]");
+
+let orders =
+    JSON.parse(localStorage.getItem("km_orders") || "[]");
+
+const app = document.getElementById("app");
+
+function money(amount) {
+    return "₹" + Number(amount).toLocaleString("en-IN");
+}
+
+function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[char]);
+}
+
+function saveData() {
+    localStorage.setItem("km_cart", JSON.stringify(cart));
+    localStorage.setItem("km_orders", JSON.stringify(orders));
+
+    document.getElementById("cartCount").textContent =
+        cart.reduce((total, item) => total + item.qty, 0);
+
+    document.getElementById("accountButton").textContent =
+        currentUser ? currentUser.name.split(" ")[0] : "Login";
+}
+
+function showPage(page) {
+    window.scrollTo(0, 0);
+
+    if (page === "home") renderHome();
+    else if (page === "cart") renderCart();
+    else if (page === "login") renderAuth("login");
+    else if (page === "signup") renderAuth("signup");
+    else if (page === "checkout") renderCheckout();
+    else if (page === "orders") renderOrders();
+    else if (page === "account") renderAccount();
+
+    saveData();
+}
+
+function renderHome() {
+    app.innerHTML = `
+        <section class="hero">
+            <div class="hero-text">
+                <p style="color:#ff4b20;font-weight:bold">
+                    YOUR EVERYDAY STYLE STORE
+                </p>
+
+                <h1>Find your style.<br>Love your price.</h1>
+
+                <p>
+                    Discover fashion, footwear and accessories
+                    at friendly prices.
+                </p>
+
+                <button class="btn primary"
+                        onclick="document.getElementById('shop').scrollIntoView({behavior:'smooth'})">
+                    Shop Now →
+                </button>
+            </div>
+
+            <div class="hero-image">🛍️</div>
+        </section>
+
+        <h2 id="shop">Shop by Category</h2>
+
+        <div class="categories">
+            ${["All", "Men", "Women", "Footwear", "Accessories"]
+                .map(category => `
+                    <button class="chip ${activeCategory === category ? "active" : ""}"
+                            onclick="setCategory('${category}')">
+                        ${category}
+                    </button>
+                `).join("")}
+        </div>
+
+        <h2>Popular Products</h2>
+
+        <p class="muted">
+            Find your favourites at KarthikaMart.
+        </p>
+
+        <div class="products" id="productGrid"></div>
+    `;
+
+    renderProducts();
+}
+
+function setCategory(category) {
+    activeCategory = category;
+    renderHome();
+}
+
+function renderProducts() {
+    const grid = document.getElementById("productGrid");
+
+    if (!grid) return;
+
+    const query =
+        document.getElementById("searchInput").value.toLowerCase();
+
+    const filtered = products.filter(product => {
+        const categoryMatches =
+            activeCategory === "All" ||
+            product.category === activeCategory;
+
+        const searchMatches =
+            (product.name + " " + product.category)
+                .toLowerCase().includes(query);
+
+        return categoryMatches && searchMatches;
+    });
+
+    if (filtered.length === 0) {
+        grid.innerHTML =
+            '<div class="empty">No products found.</div>';
+        return;
+    }
+
+    grid.innerHTML = filtered.map(product => `
+        <article class="product">
+            <div class="product-image"
+                 style="background:${product.color}">
+                ${product.emoji}
+            </div>
+
+            <div class="product-info">
+                <h3>${product.name}</h3>
+
+                <p class="muted">${product.description}</p>
+
+                <div class="price">${money(product.price)}</div>
+
+                <button class="btn primary"
+                        onclick="addToCart(${product.id})">
+                    + Add to Cart
+                </button>
+            </div>
+        </article>
+    `).join("");
+}
+
+function addToCart(id) {
+    const existing = cart.find(item => item.id === id);
+
+    if (existing) {
+        existing.qty++;
+    } else {
+        cart.push({ id: id, qty: 1 });
+    }
+
+    saveData();
+    showToast("Product added to cart!");
+}
+
+function subtotal() {
+    return cart.reduce((total, item) => {
+        const product = products.find(p => p.id === item.id);
+        return total + product.price * item.qty;
+    }, 0);
+}
+
+function changeQty(id, amount) {
+    const item = cart.find(i => i.id === id);
+
+    if (!item) return;
+
+    item.qty += amount;
+
+    if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== id);
+    }
+
+    saveData();
+    renderCart();
+}
+
+function removeItem(id) {
+    cart = cart.filter(item => item.id !== id);
+    saveData();
+    renderCart();
+}
+
+function renderCart() {
+    if (cart.length === 0) {
+        app.innerHTML = `
+            <div class="empty">
+                <div style="font-size:55px">🛒</div>
+                <h2>Your cart is empty</h2>
+                <p class="muted">Add products to start shopping.</p>
+
+                <button class="btn primary"
+                        onclick="showPage('home')">
+                    Shop Now
+                </button>
+            </div>
+        `;
+        return;
+    }
+
+    const delivery = subtotal() >= 999 ? 0 : 49;
+
+    app.innerHTML = `
+        <h1>Your Shopping Cart</h1>
+
+        <div class="layout">
+            <section class="panel">
+                <h2>Cart Items</h2>
+
+                ${cart.map(item => {
+                    const product =
+                        products.find(p => p.id === item.id);
+
+                    return `
+                        <div class="cart-row">
+                            <div class="cart-image"
+                                 style="background:${product.color}">
+                                ${product.emoji}
+                            </div>
+
+                            <div>
+                                <b>${product.name}</b>
+
+                                <p class="muted">
+                                    ${money(product.price)} each
+                                </p>
+
+                                <div class="quantity">
+                                    <button onclick="changeQty(${product.id},-1)">−</button>
+
+                                    <b>${item.qty}</b>
+
+                                    <button onclick="changeQty(${product.id},1)">+</button>
+                                </div>
+                            </div>
+
+                            <div style="text-align:right">
+                                <b>${money(product.price * item.qty)}</b>
+
+                                <br><br>
+
+                                <button class="btn secondary"
+                                        onclick="removeItem(${product.id})">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join("")}
+            </section>
+
+            <aside class="panel">
+                <h2>Order Summary</h2>
+
+                <div class="summary-line">
+                    <span>Subtotal</span>
+                    <b>${money(subtotal())}</b>
+                </div>
+
+                <div class="summary-line">
+                    <span>Delivery</span>
+                    <b>${delivery === 0 ? "FREE" : money(delivery)}</b>
+                </div>
+
+                <div class="summary-line total">
+                    <span>Total</span>
+                    <span>${money(subtotal() + delivery)}</span>
+                </div>
+
+                <button class="btn primary full"
+                        onclick="startCheckout()">
+                    Proceed to Checkout
+                </button>
+
+                <button class="btn outline full"
+                        onclick="showPage('home')">
+                    Continue Shopping
+                </button>
+            </aside>
+        </div>
+    `;
+}
+
+function startCheckout() {
+    if (!currentUser) {
+        showPage("login");
+        return;
+    }
+
+    showPage("checkout");
+}
+
+function renderAuth(mode) {
+    const signup = mode === "signup";
+
+    app.innerHTML = `
+        <form class="auth"
+              onsubmit="submitAuth(event,'${mode}')">
+
+            <div class="logo">
+                Karthika<span>Mart</span>
+            </div>
+
+            <h1>${signup ? "Create Account" : "Welcome Back!"}</h1>
+
+            <p class="muted">
+                ${signup
+                    ? "Create an account to start shopping."
+                    : "Login to continue shopping."}
+            </p>
+
+            <div id="authMessage"></div>
+
+            ${signup ? `
+                <div class="field">
+                    <label>Full Name</label>
+                    <input name="name"
+                           required
+                           autocomplete="name"
+                           placeholder="Enter your name">
+                </div>
+            ` : ""}
+
+            <div class="field">
+                <label>Email Address</label>
+                <input name="email"
+                       type="email"
+                       required
+                       autocomplete="email"
+                       placeholder="Enter your email">
+            </div>
+
+            <div class="field">
+                <label>Password</label>
+                <input name="password"
+                       type="password"
+                       minlength="4"
+                       required
+                       autocomplete="${signup ? "new-password" : "current-password"}"
+                       placeholder="Enter password">
+            </div>
+
+            <button class="btn primary full" type="submit">
+                ${signup ? "Sign Up" : "Login"}
+            </button>
+
+            <p style="text-align:center;margin-top:20px">
+                ${signup ? "Already registered?" : "New customer?"}
+
+                <button type="button"
+                        class="btn secondary"
+                        onclick="showPage('${signup ? "login" : "signup"}')">
+                    ${signup ? "Login" : "Create Account"}
+                </button>
+            </p>
+
+            <p class="muted">
+                Demo only. Use a secure backend before storing real accounts.
+            </p>
+        </form>
+    `;
+}
+
+function submitAuth(event, mode) {
+    event.preventDefault();
+
+    const form = new FormData(event.target);
+    const email = String(form.get("email")).trim().toLowerCase();
+    const password = String(form.get("password"));
+
+    let users = JSON.parse(localStorage.getItem("km_users") || "[]");
+
+    const message = document.getElementById("authMessage");
+
+    if (mode === "signup") {
+        if (users.some(user => user.email === email)) {
+            message.innerHTML = `
+                <div class="message">
+                    Account already exists. Please login.
+                </div>
+            `;
+            return;
+        }
+
+        const user = {
+            name: String(form.get("name")).trim(),
+            email: email,
+            password: password
+        };
+
+        users.push(user);
+
+        localStorage.setItem("km_users", JSON.stringify(users));
+
+        currentUser = {
+            name: user.name,
+            email: user.email
+        };
+
+    } else {
+        const user = users.find(user =>
+            user.email === email &&
+            user.password === password
+        );
+
+        if (!user) {
+            message.innerHTML = `
+                <div class="message">
+                    Email or password is incorrect.
+                    Create an account if you are new.
+                </div>
+            `;
+            return;
+        }
+
+        currentUser = {
+            name: user.name,
+            email: user.email
+        };
+    }
+
+    localStorage.setItem("km_user", JSON.stringify(currentUser));
+
+    saveData();
+    showPage("home");
+    showToast("Welcome to KarthikaMart!");
+}
+
+function renderCheckout() {
+    if (!currentUser || cart.length === 0) {
+        showPage(cart.length ? "login" : "cart");
+        return;
+    }
+
+    const delivery = subtotal() >= 999 ? 0 : 49;
+
+    app.innerHTML = `
+        <h1>Checkout</h1>
+
+        <form onsubmit="placeOrder(event)">
+            <div class="layout">
+                <section class="panel">
+                    <h2>Delivery Details</h2>
+
+                    <div class="field">
+                        <label>Full Name</label>
+                        <input name="name"
+                               required
+                               value="${escapeHTML(currentUser.name)}">
+                    </div>
+
+                    <div class="field">
+                        <label>Phone Number</label>
+                        <input name="phone"
+                               required
+                               inputmode="numeric"
+                               pattern="[0-9]{10}"
+                               maxlength="10"
+                               placeholder="10-digit mobile number">
+                    </div>
+
+                    <div class="field">
+                        <label>Email</label>
+                        <input name="email"
+                               type="email"
+                               required
+                               value="${escapeHTML(currentUser.email)}">
+                    </div>
+
+                    <div class="field">
+                        <label>Delivery Address</label>
+                        <textarea name="address"
+                                  required
+                                  placeholder="House number, street and area"></textarea>
+                    </div>
+
+                    <div class="field">
+                        <label>City</label>
+                        <input name="city" required>
+                    </div>
+
+                    <div class="field">
+                        <label>PIN Code</label>
+                        <input name="pin"
+                               required
+                               pattern="[0-9]{6}"
+                               maxlength="6"
+                               inputmode="numeric">
+                    </div>
+
+                    <h3>Payment Method</h3>
+
+                    <label>
+                        <input type="radio"
+                               name="payment"
+                               value="Cash on Delivery"
+                               checked>
+                        Cash on Delivery
+                    </label>
+
+                    <p class="muted">
+                        Demo checkout. No real payment is processed.
+                    </p>
+                </section>
+
+                <aside class="panel">
+                    <h2>Order Summary</h2>
+
+                    ${cart.map(item => {
+                        const product =
+                            products.find(p => p.id === item.id);
+
+                        return `
+                            <div class="summary-line">
+                                <span>${product.name} × ${item.qty}</span>
+                                <b>${money(product.price * item.qty)}</b>
+                            </div>
+                        `;
+                    }).join("")}
+
+                    <div class="summary-line">
+                        <span>Delivery</span>
+                        <b>${delivery === 0 ? "FREE" : money(delivery)}</b>
+                    </div>
+
+                    <div class="summary-line total">
+                        <span>Total</span>
+                        <span>${money(subtotal() + delivery)}</span>
+                    </div>
+
+                    <button class="btn primary full" type="submit">
+                        Place Order
+                    </button>
+
+                    <button class="btn outline full"
+                            type="button"
+                            onclick="showPage('cart')">
+                        Back to Cart
+                    </button>
+                </aside>
+            </div>
+        </form>
+    `;
+}
+
+function placeOrder(event) {
+    event.preventDefault();
+
+    const form = new FormData(event.target);
+    const delivery = subtotal() >= 999 ? 0 : 49;
+
+    const order = {
+        id: "KM" + Date.now().toString().slice(-8),
+        date: new Date().toLocaleString(),
+        user: currentUser.email,
+        name: form.get("name"),
+        phone: form.get("phone"),
+        address:
+            form.get("address") + ", " +
+            form.get("city") + " - " +
+            form.get("pin"),
+        payment: form.get("payment"),
+        items: cart.map(item => ({ ...item })),
+        total: subtotal() + delivery,
+        status: "Order Placed"
+    };
+
+    orders.unshift(order);
+
+    cart = [];
+
+    saveData();
+
+    app.innerHTML = `
+        <div class="auth">
+            <div style="text-align:center">
+                <div style="font-size:65px">✅</div>
+
+                <h1>Order Placed Successfully!</h1>
+
+                <p>Your order number is:</p>
+
+                <h2>${order.id}</h2>
+
+                <div class="message">
+                    Total: <b>${money(order.total)}</b><br>
+                    Payment: ${order.payment}
+                </div>
+
+                <button class="btn primary full"
+                        onclick="showPage('orders')">
+                    View My Orders
+                </button>
+
+                <button class="btn outline full"
+                        onclick="showPage('home')">
+                    Continue Shopping
+                </button>
+            </div>
+        </div>
+    `;
+}
+
+function renderOrders() {
+    if (!currentUser) {
+        app.innerHTML = `
+            <div class="empty">
+                <h2>Login to view your orders</h2>
+
+                <button class="btn primary"
+                        onclick="showPage('login')">
+                    Login
+                </button>
+            </div>
+        `;
+        return;
+    }
+
+    const mine = orders.filter(
+        order => order.user === currentUser.email
+    );
+
+    app.innerHTML = `
+        <h1>My Orders</h1>
+
+        ${mine.length ? mine.map(order => `
+            <article class="panel">
+                <h3>Order ${order.id}</h3>
+
+                <p class="muted">${order.date}</p>
+
+                <p>
+                    ${order.items.map(item => {
+                        const product =
+                            products.find(p => p.id === item.id);
+
+                        return product.name + " × " + item.qty;
+                    }).join(", ")}
+                </p>
+
+                <p>Status: <b>${order.status}</b></p>
+
+                <p>Payment: ${order.payment}</p>
+
+                <p>Delivery: ${escapeHTML(order.address)}</p>
+
+                <h3>Total: ${money(order.total)}</h3>
+            </article>
+        `).join("") : `
+            <div class="empty">
+                <h2>No orders yet</h2>
+
+                <button class="btn primary"
+                        onclick="showPage('home')">
+                    Start Shopping
+                </button>
+            </div>
+        `}
+    `;
+}
+
+function renderAccount() {
+    if (!currentUser) {
+        showPage("login");
+        return;
+    }
+
+    app.innerHTML = `
+        <section class="panel">
+            <h1>My Account</h1>
+
+            <h2>${escapeHTML(currentUser.name)}</h2>
+
+            <p>${escapeHTML(currentUser.email)}</p>
+
+            <button class="btn primary"
+                    onclick="showPage('orders')">
+                My Orders
+            </button>
+
+            <button class="btn outline"
+                    onclick="logout()">
+                Logout
+            </button>
+        </section>
+    `;
+}
+
+function logout() {
+    currentUser = null;
+    localStorage.removeItem("km_user");
+    saveData();
+    showPage("home");
+    showToast("Logged out successfully.");
+}
+
+let toastTimer;
+
+function showToast(message) {
+    let toast = document.getElementById("toast");
+
+    if (!toast) {
+        toast = document.createElement("div");
+        toast.id = "toast";
+
+        toast.style.cssText = `
+            position:fixed;
+            bottom:20px;
+            left:50%;
+            transform:translateX(-50%);
+            background:#18343b;
+            color:white;
+            padding:13px 20px;
+            border-radius:10px;
+            z-index:100;
+            max-width:90%;
+            text-align:center;
+        `;
+
+        document.body.appendChild(toast);
+    }
+
+    toast.textContent = message;
+    toast.style.display = "block";
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+        toast.style.display = "none";
+    }, 2200);
+}
+
+saveData();
+renderHome();
+</script>
+
+</body>
+</html>
